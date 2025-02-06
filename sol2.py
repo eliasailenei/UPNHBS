@@ -56,7 +56,7 @@ def extract_primes(binary, N):
     length = len(binary)
 
     # **Hybrid approach**
-    if length < 100:  # Small cases, run single-threaded
+    if length < :60  # Small cases, run single-threaded
         primes = set()
         checked_nums = set()
 
