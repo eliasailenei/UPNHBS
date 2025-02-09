@@ -19,24 +19,35 @@ def convert(binary):
     return data
 
 
-def hidden(value):
+def hidden(binary):
     increment = 0
     data = []
-    while increment != len(value):
-        string = ""
-        for x in range((len(value)) - increment):
-            string = string + value[x]
-        data.append(string)
-        increment += 1
-    return data
+    if check(binary):
+        while increment != len(binary):
+            string = ""
+            for x in range((len(binary)) - increment):
+                string = string + value[x]
+            data.append(string)
+            increment += 1
+        return data
 
 
-values = hidden(value)
-datas = []
-for element1 in values:
-    sum = 0
-    for element2 in convert(element1):
-        sum += element2
-    datas.append(sum)
+def prime(array):
+    primed = [2, 3, 5, 7, 11]
+    for index in range(len(array)):
+        for element in primed:
+            if array[index] != element:
+                if array[index] > 3:
+                    if array[index] % element == 0:
+                        array[index] = -1
 
-datas.append(2)
+                else:
+                    if array[index] == 1 or array[index] == 0:
+                        array[index] = -1
+
+    return array
+
+
+
+
+
