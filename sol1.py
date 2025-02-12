@@ -45,13 +45,16 @@ def prime(array):
     return array
 
 
-def sort(array):
+def sort(array, less):
     array = prime(array)
     swap = True
     while swap:
         swap = False
         if array[0] == -1:
             array.remove(-1)
+            swap = True
+        if array[-1] > less:
+            array[-1] = -1
             swap = True
 
         for element in range(len(array)):
@@ -64,15 +67,15 @@ def sort(array):
     return array
 
 
-def final(array):
-    array = sort(array)
+def final(array, less):
+    array = sort(array, less)
     if len(array) > 6:
         print(array[0], array[1], array[2], array[-3], array[-2], array[-1], ":", len(array))
     else:
         print(array)
 
 
-def work(array):
+def work(array, less):
     values = hidden(array)
     datas = []
     for element1 in values:
@@ -80,7 +83,7 @@ def work(array):
         for element2 in convert(element1):
             total += element2
         datas.append(total)
-    final(datas)
+    final(datas, less)
 
 
-work("011011")
+work("011011", 10)
