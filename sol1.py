@@ -1,13 +1,10 @@
-value = "0110"
-
-
 def check(binary):
-    work = True
+    approve = True
     for index in binary:
         if index != "1":
             if index != "0":
-                work = False
-    return work
+                approve = False
+    return approve
 
 
 def convert(binary):
@@ -26,7 +23,7 @@ def hidden(binary):
         while increment != len(binary):
             string = ""
             for x in range((len(binary)) - increment):
-                string = string + value[x]
+                string = string + binary[x]
             data.append(string)
             increment += 1
         return data
@@ -48,6 +45,42 @@ def prime(array):
     return array
 
 
+def sort(array):
+    array = prime(array)
+    swap = True
+    while swap:
+        swap = False
+        if array[0] == -1:
+            array.remove(-1)
+            swap = True
+
+        for element in range(len(array)):
+            for index in range(len(array) - 1):
+                if array[index] > array[index + 1]:
+                    temp = array[index]
+                    array[index] = array[index + 1]
+                    array[index + 1] = temp
+                    swap = True
+    return array
 
 
+def final(array):
+    array = sort(array)
+    if len(array) > 6:
+        print(array[0], array[1], array[2], array[-3], array[-2], array[-1], ":", len(array))
+    else:
+        print(array)
 
+
+def work(array):
+    values = hidden(array)
+    datas = []
+    for element1 in values:
+        total = 0
+        for element2 in convert(element1):
+            total += element2
+        datas.append(total)
+    final(datas)
+
+
+work("011011")
