@@ -2,7 +2,6 @@
 import time
 import math
 import functools
-import sympy # will be removed from final submission
 def sieve(limit): # this method has a limit btw
     is_prime_arr = bytearray(b'\x01') * (limit + 1) # we use bytearray for better performance. numbers use more memory and we are very stingy with memory
     is_prime_arr[:2] = b'\x00\x00'  # 0 and 1 are not prime
@@ -58,7 +57,7 @@ def extract_primes(binary, N):
     elif len(primes) < 6: # if we have less than 6 primes
         return f"{len(primes)}: {', '.join(map(str, primes))}"
     else: # if we have more than 6 primes
-        last_three = [f"{n} --> {'✅' if sympy.isprime(n) else '❌'}" for n in primes[-3:]]
+        last_three = [f"{n}" for n in primes[-3:]]
         return f"6: {', '.join(map(str, primes[:3]))}, ..., {', '.join(last_three)}"
 if __name__ == "__main__": # our internal test cases, will be removed from final submission
     print(extract_primes(input("Enter a binary string: "), int(input("Enter N: "))))
