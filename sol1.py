@@ -2,7 +2,6 @@ import time
 import math
 import functools
 import random
-
 def gcd(a, b):
     while b:
         a, b = b, a % b
