@@ -31,14 +31,13 @@ def sort(array, less):
     array = sorted(set(array))  
     if len(array) == 0:
         return "No primes found."
-    if len(array) > 6:
-        return f"{array[0]} {array[1]} {array[2]} {array[-3]} {array[-2]} {array[-1]} : {len(array)}"
-    return " ".join(map(str, array))
+    elif len(array) < 6:
+        return f"{len(array)}: {', '.join(map(str, array))}"
+    else:
+        last_three = [f"{n}" for n in array[-3:]]
+        return f"6: {', '.join(map(str, array[:3]))}, ..., {', '.join(last_three)}"
 def final(array, less):
-    print(sort(array, less))
-def work(array, less):
+    return (sort(array, less))
+def extract_primes(array, less):
     values = hidden(array)
-    final(values, less)
-test_binary = "01000011010011110100110101010000001100010011100000110001"
-test_limit = 123456789012
-work(test_binary, test_limit)
+    return final(values, less)
