@@ -1,7 +1,4 @@
-# made with love by Elias Andrew Ailenei (eliasailenei) and comments help from github copilot
-import time
 import math
-import functools
 def sieve(limit): # this method has a limit btw
     is_prime_arr = bytearray(b'\x01') * (limit + 1) # we use bytearray for better performance. numbers use more memory and we are very stingy with memory
     is_prime_arr[:2] = b'\x00\x00'  # 0 and 1 are not prime
@@ -11,7 +8,6 @@ def sieve(limit): # this method has a limit btw
     return [i for i, prime in enumerate(is_prime_arr) if prime] # return all prime numbers 
 SMALL_PRIMES_LIST = sieve(10_000_000) # generate a list of small primes
 SMALL_PRIMES = set(SMALL_PRIMES_LIST) # ensure no duplicates
-#@functools.lru_cache(maxsize=None) # cache the results of this function to avoid recomputation, this can be removed if not allowed
 def is_prime(n): # trial division method (very slow but we have no choice)
     if n < 2: # 0 and 1 are not prime
         return False
@@ -59,5 +55,5 @@ def extract_primes(binary, N):
     else: # if we have more than 6 primes
         last_three = [f"{n}" for n in primes[-3:]]
         return f"6: {', '.join(map(str, primes[:3]))}, ..., {', '.join(last_three)}"
-if __name__ == "__main__": # our internal test cases, will be removed from final submission
+if __name__ == "__main__": 
     print(extract_primes(input("Enter a binary string: "), int(input("Enter N: "))))
