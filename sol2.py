@@ -11,7 +11,7 @@ def sieve(limit): # this method has a limit btw
     return [i for i, prime in enumerate(is_prime_arr) if prime] # return all prime numbers 
 SMALL_PRIMES_LIST = sieve(10_000_000) # generate a list of small primes
 SMALL_PRIMES = set(SMALL_PRIMES_LIST) # ensure no duplicates
-@functools.lru_cache(maxsize=None) # cache the results of this function to avoid recomputation, this can be removed if not allowed
+#@functools.lru_cache(maxsize=None) # cache the results of this function to avoid recomputation, this can be removed if not allowed
 def is_prime(n): # trial division method (very slow but we have no choice)
     if n < 2: # 0 and 1 are not prime
         return False
