@@ -1,3 +1,4 @@
+# This code is wrong, sol2 is faster <-- not good!
 import math
 import random
 def gcd(a, b):

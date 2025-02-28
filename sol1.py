@@ -41,3 +41,6 @@ def final(array, less):
 def extract_primes(array, less):
     values = hidden(array)
     return final(values, less)
+
+if __name__ == "__main__":
+    print(extract_primes(input("Enter a binary string: "), int(input("Enter N: "))))

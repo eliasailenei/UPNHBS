@@ -1,4 +1,3 @@
-import unittest
 import time
 import matplotlib.pyplot as plt
 import sol2  # Assuming sol2 is provided
@@ -19,7 +18,7 @@ test_cases = [
     ("01000011010011110100110101010000001100010011100001100010011100100100001010000010100010001010011", 12345678901234567890)
 ]
 
-# Store execution times for each solution
+# Store execution times and results for each solution
 execution_times_sol1 = []
 execution_times_sol2 = []
 execution_times_sol3 = []
@@ -27,25 +26,28 @@ test_case_indices = list(range(1, len(test_cases) + 1))
 
 # Run performance tests
 for idx, (binary_str, n) in enumerate(test_cases):
+    print(f"Test Case {idx + 1}")
+
     # Solution 1
     start_time = time.time()
-    sol1.extract_primes(binary_str, n)
+    output_sol1 = sol2.extract_primes(binary_str, n)
     elapsed_time_sol1 = time.time() - start_time
     execution_times_sol1.append(elapsed_time_sol1)
+    print(f"Solution 1:\n  Time taken: {elapsed_time_sol1:.6f}s\n  Answer: {output_sol1}")
 
     # Solution 2
     start_time = time.time()
-    sol2.extract_primes(binary_str, n)
+    output_sol2 = sol2.extract_primes(binary_str, n)
     elapsed_time_sol2 = time.time() - start_time
     execution_times_sol2.append(elapsed_time_sol2)
+    print(f"Solution 2:\n  Time taken: {elapsed_time_sol2:.6f}s\n  Answer: {output_sol2}")
 
     # Solution 3
     start_time = time.time()
-    sol3.extract_primes(binary_str, n)
+    output_sol3 = sol2.extract_primes(binary_str, n)
     elapsed_time_sol3 = time.time() - start_time
     execution_times_sol3.append(elapsed_time_sol3)
-
-    print(f"[Performance] Test case {idx+1}: Sol1 = {elapsed_time_sol1:.6f}s, Sol2 = {elapsed_time_sol2:.6f}s, Sol3 = {elapsed_time_sol3:.6f}s")
+    print(f"Solution 3:\n  Time taken: {elapsed_time_sol3:.6f}s\n  Answer: {output_sol3}\n")
 
 # Plot execution times
 plt.figure(figsize=(10, 5))
