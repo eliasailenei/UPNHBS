@@ -75,6 +75,6 @@ def extract_primes(binary_str, N): # main function
                 f"{primes_found[-3]}, {primes_found[-2]}, {primes_found[-1]}")
 
 if __name__ == "__main__":
-   print(extract_primes(input("Enter binary string: "), input("Enter N: ")))
+   print(extract_primes(input("Enter binary string: "), int(input("Enter N: "))))
 
 # Code made and maintained by Elias Andrew Ailenei (github.com/eliasailenei) 
