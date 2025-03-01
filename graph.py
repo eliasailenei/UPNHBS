@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import sol2  # Assuming sol2 is provided
 import sol1  # Assuming sol1 is provided
 import sol3  # Since sol3 is nearly identical to sol2, we alias it for clarity
-
-# Test cases for performance evaluation
 test_cases = [
     ("0100001101001111", 999999), # 1
     ("01000011010011110100110101010000", 999999), # 2
@@ -33,27 +31,27 @@ for idx, (binary_str, n) in enumerate(test_cases):
     output_sol1 = sol1.extract_primes(binary_str, n)
     elapsed_time_sol1 = time.time() - start_time
     execution_times_sol1.append(elapsed_time_sol1)
-    print(f"Solution 1:\n  Time taken: {elapsed_time_sol1:.6f}s\n  Answer: {output_sol1}")
+    print(f"Solution 1 - trail only:\n  Time taken: {elapsed_time_sol1:.6f}s\n  Answer: {output_sol1}")
 
     # Solution 2
     start_time = time.time()
     output_sol2 = sol2.extract_primes(binary_str, n)
     elapsed_time_sol2 = time.time() - start_time
     execution_times_sol2.append(elapsed_time_sol2)
-    print(f"Solution 2:\n  Time taken: {elapsed_time_sol2:.6f}s\n  Answer: {output_sol2}")
+    print(f"Solution 2 -sieve only:\n  Time taken: {elapsed_time_sol2:.6f}s\n  Answer: {output_sol2}")
 
-    # Solution 3
+    # Solution2 - old version BAD
     start_time = time.time()
     output_sol3 = sol3.extract_primes(binary_str, n)
     elapsed_time_sol3 = time.time() - start_time
     execution_times_sol3.append(elapsed_time_sol3)
-    print(f"Solution 2- with Rho:\n  Time taken: {elapsed_time_sol3:.6f}s\n  Answer: {output_sol3}\n")
+    print(f"Solution 2- the holy trinity:\n  Time taken: {elapsed_time_sol3:.6f}s\n  Answer: {output_sol3}\n")
 
 # Plot execution times
 plt.figure(figsize=(10, 5))
-#plt.plot(test_case_indices, execution_times_sol1, marker='o', linestyle='-', label="Solution 1")
-plt.plot(test_case_indices, execution_times_sol2, marker='s', linestyle='--', label="Solution 2 - new")
-plt.plot(test_case_indices, execution_times_sol3, marker='d', linestyle='-.', label="Solution 2- with Rho")
+plt.plot(test_case_indices, execution_times_sol1, marker='o', linestyle='-', label="Solution 1- trial only")
+plt.plot(test_case_indices, execution_times_sol2, marker='s', linestyle='--', label="Solution 2 - sieve only")
+plt.plot(test_case_indices, execution_times_sol3, marker='d', linestyle='-.', label="Solution 2- the holy trinity")
 
 # Labels and title
 plt.xlabel("Test Case Number")
