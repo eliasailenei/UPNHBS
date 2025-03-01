@@ -7,26 +7,19 @@ def sieve_upto(n): # this is a limit that the sieve will go up to since it has a
             for j in range(i*i, n + 1, i): # this will iterate through the list of numbers and determine if they are prime or not
                 is_prime[j] = False 
     return is_prime, [x for x in range(2, n + 1) if is_prime[x]] # this will return the list of prime numbers
-def is_prime_trial(n, small_primes=None): # this is a hybrid approach to see if its prime, using the sieve and trial division
+def is_prime_trial(n): # this is a simple trial division method to check if the number is prime
     if n < 2:
-        return False # failsafe for 0 and 1
+        return False
     if n < 4:
-        return True # numbers from 0 - 3 are always prime 
-    if n % 2 == 0 or n % 3 == 0: # divisibility by 2 and 3
-        return (n == 2 or n == 3)
-    limit = int(math.isqrt(n)) # square root of n to limit the amount of numbers to check
-    if small_primes:
-        for p in small_primes: # is sieve is used, then it will check the prime numbers
-            if p > limit: 
-                break
-            if n % p == 0: # if the number is divisible by the prime number, then it is not prime
-                return (n == p)  
-    else: # if sieve is not used, then it will use trial division
-        i = 5
-        while i <= limit:
-            if n % i == 0 or n % (i + 2) == 0:
-                return False
-            i += 6
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    limit = int(math.isqrt(n)) # this will get the square root of the number and set it as a limit
+    i = 5
+    while i <= limit:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
     return True
 def extract_primes(binary_str, N): # main function
     if not all(index in "01" for index in binary_str): # edge case : only 0 and 1 are allowed
@@ -48,7 +41,7 @@ def extract_primes(binary_str, N): # main function
     if not candidates:
         return []
     max_candidate = max(candidates) # this will get the max number from the set
-    SIEVE_THRESHOLD = 2_000_000  # this constant value is not so high on the curve but is good enought to produce the speed needed
+    SIEVE_THRESHOLD = 10_000_000  # this constant value is not so high on the curve but is good enought to produce the speed needed
     primes_found = []
     if max_candidate <= SIEVE_THRESHOLD: # if the max number is less than the threshold, then it will use the sieve
         is_prime_small, _ = sieve_upto(max_candidate) # this will get the prime numbers
@@ -62,9 +55,8 @@ def extract_primes(binary_str, N): # main function
                 if is_prime_small[val]:
                     primes_found.append(val)
             else:
-                if is_prime_trial(val, small_primes):
+                if is_prime_trial(val):
                     primes_found.append(val)
-
     if not primes_found:
         return "No primes found."
     count = len(primes_found)
@@ -73,8 +65,6 @@ def extract_primes(binary_str, N): # main function
     else:
         return (f"6: {primes_found[0]}, {primes_found[1]}, {primes_found[2]}, ..., "
                 f"{primes_found[-3]}, {primes_found[-2]}, {primes_found[-1]}")
-
 if __name__ == "__main__":
-   print(extract_primes(input("Enter binary string: "), input("Enter N: ")))
-
+   print(extract_primes(input("Enter binary string: "), int(input("Enter N: "))))
 # Code made and maintained by Elias Andrew Ailenei (github.com/eliasailenei) 
