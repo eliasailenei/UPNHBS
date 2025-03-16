@@ -35,7 +35,7 @@ def sort(array, less): # this will sort the array and check if the number is pri
         return f"{len(array)}: {', '.join(map(str, array))}"
     else:
         last_three = [f"{n}" for n in array[-3:]]
-        return f"6: {', '.join(map(str, array[:3]))}, ..., {', '.join(last_three)}"
+        return f"{len(array)}: {', '.join(map(str, array[:3]))}, ..., {', '.join(last_three)}"
 def final(array, less):
     return (sort(array, less))
 def extract_primes(array, less):
